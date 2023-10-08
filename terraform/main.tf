@@ -29,21 +29,28 @@ resource "yandex_vpc_subnet" "subnet1" {
   name = "subnet1"
   zone = "ru-central1-a"
   network_id = yandex_vpc_network.network-1.id
-  v4_cidr_blocks = ["10.0.1.0/24"]
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
 resource "yandex_vpc_subnet" "subnet2" {
   name = "subnet2"
   zone = "ru-central1-b"
   network_id = yandex_vpc_network.network-1.id
-  v4_cidr_blocks = ["10.0.2.0/24"]
+  v4_cidr_blocks = ["192.168.20.0/24"]
+}
+
+resource "yandex_vpc_subnet" "subnet3" {
+  name = "subnet3"
+  zone = "ru-central1-c"
+  network_id = yandex_vpc_network.network-1.id
+  v4_cidr_blocks = ["192.168.30.0/24"]
 }
 
 #=======================
 #Создание vm1, vm2
 
-resource "yandex_compute_instance" "nginxserver1" {
-  name = "nginxserver1"
+resource "yandex_compute_instance" "web-server1" {
+  name = "web-server1"
   zone = "ru-central1-a"
 
   resources{
@@ -64,12 +71,12 @@ resource "yandex_compute_instance" "nginxserver1" {
     nat = true
   }
   metadata = {
-    user-data = "${file("./meta.yaml")}"
+    user-data = "${file("./meta.yml")}"
   }
 }
 
-resource "yandex_compute_instance" "nginxserver2" {
-  name = "nginxserver2"
+resource "yandex_compute_instance" "web-server2" {
+  name = "web-server2"
   zone = "ru-central1-b"
 
   resources{
@@ -89,6 +96,6 @@ resource "yandex_compute_instance" "nginxserver2" {
     nat = true
   }
   metadata = {
-    user-data = "${file("./meta.yaml")}"
+    user-data = "${file("./meta.yml")}"
   }
 }
