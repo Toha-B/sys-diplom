@@ -63,7 +63,7 @@ resource "yandex_compute_instance" "web-server1" {
     initialize_params {
       image_id = "fd8o41nbel1uqngk0op2"
       size = 10
-      description = "boot disk for web-server1"
+      description = "boot disk for web_server1"
     }
   }
   network_interface {
@@ -88,7 +88,7 @@ resource "yandex_compute_instance" "web-server2" {
     initialize_params {
       image_id = "fd8o41nbel1uqngk0op2"
       size = 10
-      description = "boot disk for web-server1"
+      description = "boot disk for web_server1"
     }
   }
   network_interface {
