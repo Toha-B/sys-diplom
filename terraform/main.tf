@@ -13,7 +13,7 @@ provider "yandex" {
   folder_id    = "xxx"
 }
 
-#=====================================================
+#=======================================================
 
 # Security bastion host
 
@@ -83,6 +83,7 @@ resource "yandex_vpc_security_group" "group-webservers" {
     to_port        = 65535
   }
 }
+
 # Security group prometheus
 resource "yandex_vpc_security_group" "group-prometheus" {
   name        = "My security group prometheus"
