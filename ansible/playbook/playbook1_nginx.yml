@@ -1,1 +1,25 @@
 ---
+
+- name: Test Connection to my servers
+  hosts: nginx
+  become: yes
+
+
+  tasks:
+  - name: Install nginx on all servers
+    apt: name=nginx state=latest
+
+
+  - name: Change web site
+    ansible.builtin.copy:
+      src: ../web_site/index.nginx-debian.html
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: '0644'
+    notify:
+    - Start nginx
+
+  handlers:
+  - name: Start nginx
+    service: name=nginx state=started
