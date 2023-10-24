@@ -236,7 +236,7 @@ resource "yandex_compute_instance" "bastion-host" {
   }
 }
 
-#===================================================
+#=======================================================
 
 #web-server-1
 
@@ -293,8 +293,133 @@ resource "yandex_compute_instance" "nginxserver2" {
     user-data = "${file("./meta.yaml")}"
   }
 }
+# Prometheus
 
-#===================================================
+resource "yandex_compute_instance" "vm-prometheus" {
+
+  name = "vm-prometheus"
+  zone = "ru-central1-c"
+
+  resources {
+    cores  = 2
+    memory = 2
+    core_fraction = 100
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd80iibe8asp4inkhuhr"
+      size = 13
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-3.id
+    nat       = false
+    security_group_ids = [yandex_vpc_security_group.group-ssh-traffic.id, yandex_vpc_security_group.group-prometheus.id]
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
+
+# Grafana
+
+resource "yandex_compute_instance" "vm-grafana" {
+
+  name = "vm-grafana"
+  zone = "ru-central1-c"
+
+  resources {
+    cores  = 2
+    memory = 2
+    core_fraction = 100
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd80iibe8asp4inkhuhr"
+      size = 13
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-3.id
+    nat       = true
+    security_group_ids = [yandex_vpc_security_group.group-public-network-grafana.id, yandex_vpc_security_group.group-ssh-traffic.id]
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
+
+#======================================================
+
+# Logs
+# Elasticsearch
+
+resource "yandex_compute_instance" "vm-elasticsearch" {
+
+  name = "vm-elasticsearch"
+  zone = "ru-central1-c"
+
+  resources {
+    cores  = 4
+    memory = 4
+    core_fraction = 100
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd80iibe8asp4inkhuhr"
+      size = 13
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-3.id
+    nat       = false
+    security_group_ids = [yandex_vpc_security_group.group-elasticsearch.id, yandex_vpc_security_group.group-ssh-traffic.id]
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
+
+# Kibana
+
+resource "yandex_compute_instance" "vm-kibana" {
+
+  name = "vm-kibana"
+  zone = "ru-central1-c"
+
+  resources {
+    cores  = 2
+    memory = 2
+    core_fraction = 100
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd80iibe8asp4inkhuhr"
+      size = 13
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-3.id
+    nat       = true
+    security_group_ids = [yandex_vpc_security_group.group-public-network-kibana.id, yandex_vpc_security_group.group-ssh-traffic.id]
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
+#=======================================================
 
 # target group
 
