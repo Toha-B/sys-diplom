@@ -44,10 +44,15 @@
 
 Создайте [Application load balancer](https://cloud.yandex.com/en/docs/application-load-balancer/) для распределения трафика на веб-сервера, созданные ранее. Укажите HTTP router, созданный ранее, задайте listener тип auto, порт 80.
 
+### Проверяем созданую группу безопасности
+![1-3](./scrshts/scrin_3.png)
+
+### С помощью Ansible проверяем доступность созданых вертуальных машин
+![1-4](./scrshts/scrin_4.png)
 Протестируйте сайт
 `curl -v <публичный IP балансера>:80` 
 
-### Мониторинг
+## Мониторинг
 Создайте ВМ, разверните на ней Prometheus. На каждую ВМ из веб-серверов установите Node Exporter и [Nginx Log Exporter](https://github.com/martin-helmich/prometheus-nginxlog-exporter). Настройте Prometheus на сбор метрик с этих exporter.
 
 Создайте ВМ, установите туда Grafana. Настройте её на взаимодействие с ранее развернутым Prometheus. Настройте дешборды с отображением метрик, минимальный набор — Utilization, Saturation, Errors для CPU, RAM, диски, сеть, http_response_count_total, http_response_size_bytes. Добавьте необходимые [tresholds](https://grafana.com/docs/grafana/latest/panels/thresholds/) на соответствующие графики.
