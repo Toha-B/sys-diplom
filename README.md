@@ -96,6 +96,15 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Создайте ВМ, разверните на ней Kibana, сконфигурируйте соединение с Elasticsearch.
 
+### Устанавливаем Kibana
+![1-17](./scrshts/scrin_17.png)
+
+### Проверяем доступность Kibana.service
+![1-18](./scrshts/scrin_18.png)
+
+### Проверяем доступность сайта
+![1-19](./scrshts/scrin_19.png)
+
 ## Сеть
 Разверните один VPC. Сервера web, Prometheus, Elasticsearch поместите в приватные подсети. Сервера Grafana, Kibana, application load balancer определите в публичную подсеть.
 
