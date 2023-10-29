@@ -49,8 +49,14 @@
 
 ### С помощью Ansible проверяем доступность созданых вертуальных машин
 ![1-4](./scrshts/scrin_4.png)
-Протестируйте сайт
-`curl -v <публичный IP балансера>:80` 
+
+### Устанавливаем Nginx на машины
+![1-5](./scrshts/scrin_5.png)
+![1-6](./scrshts/scrin_6.png)
+
+### Тестируем сайт `curl -v <публичный IP балансера>:80` 
+![1-7](./scrshts/scrin_7.png)
+
 
 ## Мониторинг
 Создайте ВМ, разверните на ней Prometheus. На каждую ВМ из веб-серверов установите Node Exporter и [Nginx Log Exporter](https://github.com/martin-helmich/prometheus-nginxlog-exporter). Настройте Prometheus на сбор метрик с этих exporter.
