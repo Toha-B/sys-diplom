@@ -85,6 +85,15 @@
 ## Логи
 Cоздайте ВМ, разверните на ней Elasticsearch. Установите filebeat в ВМ к веб-серверам, настройте на отправку access.log, error.log nginx в Elasticsearch.
 
+### Устанавливаем Elasticsearch
+![1-14](./scrshts/scrin_14.png)
+
+### Проверяем доступность Elasticsearch.service
+![1-15](./scrshts/scrin_15.png)
+
+### Устанавливаем filebeat
+![1-16](./scrshts/scrin_16.png)
+
 Создайте ВМ, разверните на ней Kibana, сконфигурируйте соединение с Elasticsearch.
 
 ## Сеть
