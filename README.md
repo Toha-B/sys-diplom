@@ -61,6 +61,15 @@
 ## Мониторинг
 Создайте ВМ, разверните на ней Prometheus. На каждую ВМ из веб-серверов установите Node Exporter и [Nginx Log Exporter](https://github.com/martin-helmich/prometheus-nginxlog-exporter). Настройте Prometheus на сбор метрик с этих exporter.
 
+### Разворачиваем на отдельной вертуальной машине Prometheus
+![1-8](./scrshts/scrin_8.png)
+
+### Проверяем доступность Prometheus.service
+![1-9](./scrshts/scrin_9.png)
+
+### Устанавливаем Node Exporter
+![1-10](./scrshts/scrin_10.png)
+
 Создайте ВМ, установите туда Grafana. Настройте её на взаимодействие с ранее развернутым Prometheus. Настройте дешборды с отображением метрик, минимальный набор — Utilization, Saturation, Errors для CPU, RAM, диски, сеть, http_response_count_total, http_response_size_bytes. Добавьте необходимые [tresholds](https://grafana.com/docs/grafana/latest/panels/thresholds/) на соответствующие графики.
 
 ### Логи
