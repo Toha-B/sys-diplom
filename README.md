@@ -105,6 +105,9 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 ### Проверяем доступность сайта
 ![1-19](./scrshts/scrin_19.png)
 
+### Смотрим метрику
+![1-22](./scrshts/scrin_22.png)
+
 ## Сеть
 Разверните один VPC. Сервера web, Prometheus, Elasticsearch поместите в приватные подсети. Сервера Grafana, Kibana, application load balancer определите в публичную подсеть.
 
