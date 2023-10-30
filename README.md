@@ -81,6 +81,8 @@
 ### Проверяем доступность дешборда
 ![1-12](./scrshts/scrin_12.png)
 
+### Смотрим метрики
+![1-23](./scrshts/scrin_23.png)
 
 ## Логи
 Cоздайте ВМ, разверните на ней Elasticsearch. Установите filebeat в ВМ к веб-серверам, настройте на отправку access.log, error.log nginx в Elasticsearch.
